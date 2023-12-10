@@ -8,17 +8,24 @@ let level = 0;
 
 let scoreboard = document.querySelector("h2");
 let body = document.querySelector("body");
+let start = document.querySelector("#start");
+let end = document.querySelector("#end");
 
 let highscore = 0;
 
-document.addEventListener("keypress", function () {
+start.addEventListener("click", begin);
+document.addEventListener("keypress", begin);
+end.addEventListener("click", reset);
+
+function begin() {
   if (started == false) {
     console.log("Game has started");
     started = true;
-
+    start.style.display = "none";
+    end.style.display = "inline";
     levelUp();
   }
-});
+}
 
 function levelUp() {
   userSeq = [];
@@ -75,12 +82,15 @@ function check(ind) {
     setTimeout(function () {
       body.style.backgroundColor = "white";
     }, 150);
-    reset();
-    document.querySelector("h3").innerHTML = `HighScore : ${highscore}`;
+    reset(highscore);
   }
 }
 
-function reset() {
+function reset(highscore) {
+  end.style.display = "none";
+  start.style.display = "inline";
+  if (highscore > 0)
+    document.querySelector("h3").innerHTML = `HighScore : ${highscore}`;
   started = false;
   level = 0;
   gameSeq = [];
