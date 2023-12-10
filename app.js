@@ -14,7 +14,6 @@ let end = document.querySelector("#end");
 let highscore = 0;
 
 start.addEventListener("click", begin);
-document.addEventListener("keypress", begin);
 end.addEventListener("click", reset);
 
 function begin() {
@@ -76,21 +75,20 @@ function check(ind) {
       setTimeout(levelUp, 1000);
     }
   } else {
-    highscore = highscore > level - 1 ? highscore : level - 1;
-    scoreboard.innerHTML = `Game Over! Press any key to start`;
     body.style.backgroundColor = "red";
     setTimeout(function () {
       body.style.backgroundColor = "white";
     }, 150);
-    reset(highscore);
+    reset();
   }
 }
 
-function reset(highscore) {
+function reset() {
+  scoreboard.innerHTML = `Game Over! Press Start button to Start`;
   end.style.display = "none";
   start.style.display = "inline";
-  if (highscore > 0)
-    document.querySelector("h3").innerHTML = `HighScore : ${highscore}`;
+  highscore = highscore > level ? highscore : level;
+  document.querySelector("h3").innerHTML = `HighScore : ${highscore}`;
   started = false;
   level = 0;
   gameSeq = [];
