@@ -3,12 +3,25 @@ body {
   font-family: monospace;
 }
 
+#heading {
+  display: inline-block;
+}
+
 .btn {
-  height: 20vw;
-  width: 20vw;
+  height: 150px;
+  width: 150px;
   border-radius: 20%;
-  border: 1vw solid black;
-  margin: 3vw;
+  border: 10px solid black;
+  margin: 0rem 1rem 2rem;
+}
+
+@media (max-width: 480px) {
+  .btn {
+    height: 20vw;
+    width: 20vw;
+    border: 1vw solid black;
+    margin: 3vw;
+  }
 }
 
 #start,
