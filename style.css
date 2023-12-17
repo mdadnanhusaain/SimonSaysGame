@@ -3,29 +3,29 @@ body {
   font-family: monospace;
 }
 
-#heading {
-  display: inline-block;
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.5rem 0;
 }
 
-.btn {
-  height: 150px;
-  width: 150px;
-  border-radius: 20%;
-  border: 10px solid black;
-  margin: 0rem 1rem 2rem;
+h3 {
+  margin-top: 0.5rem;
 }
 
-@media (max-width: 480px) {
-  .btn {
-    height: 20vw;
-    width: 20vw;
-    border: 1vw solid black;
-    margin: 3vw;
-  }
+.fa-brands {
+  color: red;
+  font-size: 1.2rem;
+}
+
+#tutBtn {
+  cursor: pointer;
 }
 
 #start,
-#end {
+#end,
+#playBtn {
   font-family: monospace;
   height: 3rem;
   width: 5rem;
@@ -36,15 +36,43 @@ body {
   background-color: blueviolet;
   color: azure;
   cursor: pointer;
+  margin: 0;
 }
 
+#playBtn {
+  width: 10rem;
+}
+
+#tutorials,
 #end {
   display: none;
+}
+
+iframe {
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgb(41, 41, 41);
+  margin-top: 2rem;
 }
 
 .btn-container {
   display: flex;
   justify-content: center;
+}
+
+.btn {
+  height: 150px;
+  width: 150px;
+  border-radius: 20%;
+  border: 10px solid black;
+  cursor: pointer;
+}
+
+.top {
+  margin: 0.5rem 0.6rem 1.2rem 0.6rem;
+}
+
+.bottom {
+  margin: 1.2rem 0.6rem 0.5rem 0.6rem;
 }
 
 .yellow {
@@ -69,4 +97,21 @@ body {
 
 .userflash {
   background-color: aqua;
+}
+
+@media (max-width: 480px) {
+  .btn {
+    height: 20vw;
+    width: 20vw;
+    border: 1vw solid black;
+    margin: 3vw;
+  }
+
+  iframe {
+    width: 100%;
+  }
+
+  .top {
+    margin: 3rem 0.6rem 1.2rem 0.6rem;
+  }
 }

@@ -10,11 +10,38 @@ let scoreboard = document.querySelector("h2");
 let body = document.querySelector("body");
 let start = document.querySelector("#start");
 let end = document.querySelector("#end");
+let allBtns = document.querySelectorAll(".btn");
+let tutBtn = document.querySelector("#tutBtn");
+let playBtn = document.querySelector("#playBtn");
 
 let highscore = 0;
 
 start.addEventListener("click", begin);
 end.addEventListener("click", reset);
+tutBtn.addEventListener("click", dispTut);
+playBtn.addEventListener("click", hideTut);
+
+for (btn of allBtns) {
+  btn.addEventListener("click", begin);
+}
+
+function dispTut() {
+  let ins = document.querySelector("#instructions");
+  let tut = document.querySelector("#tutorials");
+  let game = document.querySelector("#game");
+  ins.style.display = "None";
+  tut.style.display = "block";
+  game.style.display = "None";
+}
+
+function hideTut() {
+  let ins = document.querySelector("#instructions");
+  let tut = document.querySelector("#tutorials");
+  let game = document.querySelector("#game");
+  ins.style.display = "block";
+  tut.style.display = "None";
+  game.style.display = "block";
+}
 
 function begin() {
   if (started == false) {
@@ -22,6 +49,10 @@ function begin() {
     started = true;
     start.style.display = "none";
     end.style.display = "inline";
+    for (btn of allBtns) {
+      btn.addEventListener("click", btnPress);
+      btn.removeEventListener("click", begin);
+    }
     levelUp();
   }
 }
@@ -43,14 +74,14 @@ function flashBtn(btn) {
   btn.classList.add("flash");
   setTimeout(function () {
     btn.classList.remove("flash");
-  }, 250);
+  }, 350);
 }
 
 function flashUser(btn) {
   btn.classList.add("userflash");
   setTimeout(function () {
     btn.classList.remove("userflash");
-  }, 250);
+  }, 350);
 }
 
 function btnPress() {
@@ -63,11 +94,6 @@ function btnPress() {
   check(userSeq.length - 1);
 }
 
-let allBtns = document.querySelectorAll(".btn");
-for (btn of allBtns) {
-  btn.addEventListener("click", btnPress);
-}
-
 function check(ind) {
   console.log("Curr level : ", level);
   if (userSeq[ind] == gameSeq[ind]) {
@@ -78,7 +104,7 @@ function check(ind) {
     body.style.backgroundColor = "red";
     setTimeout(function () {
       body.style.backgroundColor = "white";
-    }, 150);
+    }, 250);
     reset();
   }
 }
@@ -93,4 +119,8 @@ function reset() {
   level = 0;
   gameSeq = [];
   userSeq = [];
+  for (btn of allBtns) {
+    btn.addEventListener("click", begin);
+    btn.removeEventListener("click", btnPress);
+  }
 }
